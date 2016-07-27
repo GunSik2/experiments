@@ -8,15 +8,39 @@
 ssh-keygen -t rsa -b 2048
 sudo add-apt-repository ppa:juju/stable
 sudo apt-get update && sudo apt-get install juju-core
-juju generate-config
+juju init 
 
 vi ~/.juju/environments.yaml
 # 설정 변경
-    amazon:
+default: openstack
+  openstack:
+    type: openstack
+    use-floating-ip: false
+    use-default-secgroup: false
+    network: BOSH
+    auth-url: http://10.0.2.2:5000/v2.0
+    region: RegionOne
+    auth-mode: userpass
+    tenant-name: demo
+    username: demo
+    password: thepassword
+  amazon:
         type: ec2
         region: ap-northeast-1
         access-key: <secret>
         secret-key: <secret>
+        
+sudo mkdir /opt/stack
+sudo chown ubuntu.ubuntu /opt/stack -R
+juju metadata generate-image -a amd64 -i a3b30884-1bfa-46bd-84cb-32f9316cba6b -r RegionOne -s trusty -d /opt/stack -u http://10.1.1.33:5000/v2.0 -e openstack
+juju metadata generate-tools -d /opt/stack
+juju bootstrap --metadata-source /opt/stack --upload-tools -v
+--
+ubuntu@mgmt:~$ juju bootstrap --metadata-source /opt/stack --upload-tools -v
+WARNING ignoring environments.yaml: using bootstrap config in file "/home/ubuntu/.juju/environments/openstack.jenv"
+ERROR failed to bootstrap environment: index file has no data for cloud {RegionOne http://148.1.1.33:5000/v2.0} not found
+--
+juju ssh 0
 ```
 
 # Juju test
@@ -84,4 +108,5 @@ juju destroy-environment <environment>
 
 # Reference
 - [Juju getting started](https://jujucharms.com/docs/1.24/getting-started)
+- [] (https://blog.felipe-alfaro.com/2014/04/29/bootstraping-juju-on-top-of-an-openstack-private-cloud/)
 - [Juju openstack HA](https://wiki.ubuntu.com/ServerTeam/OpenStackHA)
