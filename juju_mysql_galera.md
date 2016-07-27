@@ -108,5 +108,5 @@ juju destroy-environment <environment>
 
 # Reference
 - [Juju getting started](https://jujucharms.com/docs/1.24/getting-started)
-- [] (https://blog.felipe-alfaro.com/2014/04/29/bootstraping-juju-on-top-of-an-openstack-private-cloud/)
+- [bootstraping-juju-on-top-of-an-openstack-private-cloud] (https://blog.felipe-alfaro.com/2014/04/29/bootstraping-juju-on-top-of-an-openstack-private-cloud/)
 - [Juju openstack HA](https://wiki.ubuntu.com/ServerTeam/OpenStackHA)
