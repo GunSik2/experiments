@@ -7,7 +7,7 @@
 ```
 ssh-keygen -t rsa -b 2048
 sudo add-apt-repository ppa:juju/stable
-sudo apt-get update && sudo apt-get install juju-core
+sudo apt-get -y update && sudo apt-get install juju-core
 juju init 
 
 vi ~/.juju/environments.yaml
