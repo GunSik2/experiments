@@ -38,7 +38,7 @@ juju bootstrap --metadata-source /opt/stack --upload-tools -v
 --
 ubuntu@mgmt:~$ juju bootstrap --metadata-source /opt/stack --upload-tools -v
 WARNING ignoring environments.yaml: using bootstrap config in file "/home/ubuntu/.juju/environments/openstack.jenv"
-ERROR failed to bootstrap environment: index file has no data for cloud {RegionOne http://148.1.1.33:5000/v2.0} not found
+ERROR failed to bootstrap environment: index file has no data for cloud {RegionOne http://10.1.1.33:5000/v2.0} not found
 --
 juju ssh 0
 ```
