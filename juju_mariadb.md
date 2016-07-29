@@ -62,6 +62,7 @@ mysql> show status like '%wsrep_cluster_size%';
 ```
 
 - add vip
+  - To use virtual IP(s) the clustered nodes must be on the same subnet such that the VIP is a valid IP on the subnet for one of the node's interfaces and each node has an interface in said subnet. The VIP becomes a highly-available API endpoint.
 ```
 juju set galera-cluster vip=10.0.3.200 
 juju deploy cs:trusty/hacluster-29   //juju deploy hacluster 
@@ -70,11 +71,14 @@ juju expose galera-cluster
 # ERROR cannot add relation "galera-cluster:ha hacluster:ha": principal and subordinate services' series must match
 ```
 
+
+
 - zone 지정
 
 
 Reference
 - https://jujucharms.com/galera-cluster/
+- https://demo.jujucharms.com/inspector/80859241$/?store=trusty/hacluster
 - https://mariadb.com/kb/en/mariadb/galera-cluster/
 - http://galeracluster.com/2015/06/fast-galera-cluster-deployments-in-the-cloud-using-juju/
 
