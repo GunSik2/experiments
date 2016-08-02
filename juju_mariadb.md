@@ -63,6 +63,7 @@ mysql> show status like '%wsrep_cluster_size%';
 
 - add vip
   - To use virtual IP(s) the clustered nodes must be on the same subnet such that the VIP is a valid IP on the subnet for one of the node's interfaces and each node has an interface in said subnet. The VIP becomes a highly-available API endpoint.
+  - In AWS, keepalived can be used, which supports unicast option. [More info on this] (https://blog.logentries.com/2014/12/keepalived-and-haproxy-in-aws-an-exploratory-guide/)
 ```
 juju set galera-cluster vip=10.0.3.200 
 juju deploy cs:trusty/hacluster-29   //juju deploy hacluster 
