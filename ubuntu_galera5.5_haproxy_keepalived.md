@@ -28,10 +28,9 @@ wsrep_cluster_name="my_wsrep_cluster"
 wsrep_cluster_address="gcomm://172.16.8.5,172.16.8.6,172.16.8.4"
 wsrep_sst_method=rsync
 ```
-- create ami image
-- lauch additional two nodes using the ami image.
 
-### 
+
+### Each node
 ```
 node01# sudo service mysql stop
 node02# sudo service mysql stop
