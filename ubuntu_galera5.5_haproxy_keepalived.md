@@ -68,14 +68,19 @@ node1# sudo scp -i pem /etc/mysql/debian.cnf ubuntu@node3:/etc/mysql/debian.cnf
 
 ## Keepalived
 
+```
+sudo apt-get install python-pip 
+sudo apt-get install keepalived
+pip install awscli
+aws configure
+
+```
+
 ## Test
 ### Failover
 ### Performance
 
 ## Reference
-- https://mariadb.org/mariadb-10-1-1-galera-support/
-- https://mariadb.com/kb/en/mariadb/getting-started-with-mariadb-galera-cluster/
 - (5.5) https://mariadb.org/installing-mariadb-galera-cluster-on-debian-ubuntu/
-- https://medium.com/@_wli/mariadb-galera-cluster-10-1-installation-on-digitalocean-ubuntu-14-04-65b7d18d06ec#.f3kklbuk3
-- http://galeracluster.com/documentation-webpages/
+- (keeyalived) https://blog.logentries.com/2014/12/keepalived-and-haproxy-in-aws-an-exploratory-guide/
 - 
