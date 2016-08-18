@@ -106,10 +106,20 @@ global_defs {
      }
  }
 ```
+-if firewall set,
+```
+# /sbin/iptables -I INPUT -i eth0 -d 224.0.0.0/8 -j ACCEPT
+# /sbin/iptables -A INPUT -p 112 -i eth0 -j ACCEPT
+# /sbin/iptables -A OUTPUT -p 112 -o eth0 -j ACCEPT
+# /sbin/service iptables save
+```
 ## Test
 ```
 tcpdump -v -i eth0 host 224.0.0.18
 tcpdump -vvv -n -i eth0 host 224.0.0.18
+
+tcpdump -i eth0 port 112
+tcpdump -i eth0 host 10.0.0.255
 ```
 
 
@@ -117,3 +127,5 @@ tcpdump -vvv -n -i eth0 host 224.0.0.18
 - (5.5) https://mariadb.org/installing-mariadb-galera-cluster-on-debian-ubuntu/
 - (keeyalived) https://blog.logentries.com/2014/12/keepalived-and-haproxy-in-aws-an-exploratory-guide/
 - http://www.stratoscale.com/blog/compute/highly-available-lb-openstack-instead-lbaas/
+- http://www.cyberciti.biz/faq/linux-unix-verify-keepalived-working-or-not/
+- 
