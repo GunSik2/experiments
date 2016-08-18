@@ -67,20 +67,53 @@ node1# sudo scp -i pem /etc/mysql/debian.cnf ubuntu@node3:/etc/mysql/debian.cnf
 ## Haproxy 
 
 ## Keepalived
-
+- Install
 ```
-sudo apt-get install python-pip 
 sudo apt-get install keepalived
-pip install awscli
-aws configure
-
+```
+- Config
+```
+global_defs {
+    notification_email {
+      youremail@yourdomain.com
+    }
+    notification_email_from haproxy1@yourdomain.com
+    smtp_server yoursmtp.yourdomain.com
+    smtp_connect_timeout 30
+    router_id haproxy
+ }
+ vrrp_script haproxy {
+   script "killall -0 haproxy"
+   interval 2
+   weight 2
+ }
+ vrrp_instance VI_1 {
+     state MASTER
+     interface eth0
+     virtual_router_id 71
+     priority 100    # For node2, set priority to lower
+     advert_int 1
+     smtp_alert
+     authentication {
+         auth_type PASS
+         auth_pass YourSecretPassword
+     }
+     virtual_ipaddress {
+         192.168.1.3 dev eth0
+     }
+     track_script {
+       haproxy
+     }
+ }
+```
+## Test
+```
+tcpdump -v -i eth0 host 224.0.0.18
+tcpdump -vvv -n -i eth0 host 224.0.0.18
 ```
 
-## Test
-### Failover
-### Performance
 
 ## Reference
 - (5.5) https://mariadb.org/installing-mariadb-galera-cluster-on-debian-ubuntu/
 - (keeyalived) https://blog.logentries.com/2014/12/keepalived-and-haproxy-in-aws-an-exploratory-guide/
-- 
+- http://www.stratoscale.com/blog/compute/highly-available-lb-openstack-instead-lbaas/
