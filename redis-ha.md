@@ -33,6 +33,8 @@ vrrp_instance VI_1 {
 
 ```
 -/etc/keepalived/notify.sh
+  - perl 을 이용한 config 변경은 optional 
+  - perl 설정 시 known problem: master(node1) redis stop/start 시 slave(node2) 가 잠시 master에서 slave로 변경. 이 때 slave config 에 slaveof 옵션이 깨짐 
 ```
 #!/bin/bash
 
@@ -64,7 +66,15 @@ case $ENDSTATE in
               exit 1
               ;;
 esac
-
+```
+- /etc/redis/redis.conf
+```
+tcp-keepalive 60   
+# bind 127.0.0.1
+# requirepass your_redis_master_password
+# maxmemory-policy noeviction
+appendonly yes
+appendfilename appendonly.aof
 ```
 ## node2
 - /etc/keepalived/keepalived.conf
@@ -130,5 +140,12 @@ case $ENDSTATE in
               exit 1
               ;;
 esac
+```
+- /etc/redis/redis.conf
+```
+# bind 127.0.0.1
+# requirepass your_redis_master_password
+slaveof your_redis_master_ip 6379
+# masterauth your_redis_master_password
 ```
 
