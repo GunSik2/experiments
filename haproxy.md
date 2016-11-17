@@ -32,24 +32,23 @@ listen redis 0.0.0.0:6379
     server redis_1 172.16.129.4:6379 check weight 1
     server redis_2 172.16.129.5:6379 check weight 1
 
-listen broker-http 0.0.0.0:80
-    balance source
-    mode http
-    option forwardfor
-    server broker_1 172.16.129.6:80 check weight 1
+#listen broker-http 0.0.0.0:80
+#    balance source
+#    mode http
+#    option forwardfor
+#    server broker_1 172.16.129.6:80 check weight 1
 
-listen dashboard-http 0.0.0.0:443
-    balance source
-    mode http
-    option forwardfor
-    server broker_1 172.16.129.6:443 check weight 1
-
+#listen dashboard-http 0.0.0.0:443
+#    balance source
+#    mode http
+#    option forwardfor
+#    server broker_1 172.16.129.6:443 check weight 1
 
 frontend broker-in
     mode http
     bind :80
     option httpclose
-    option forwardfor except 10.0.101.61
+    option forwardfor 
     reqadd X-Forwarded-Proto:\ http
     default_backend broker
 
@@ -59,7 +58,7 @@ frontend dashboard-in
     option httplog
     option forwardfor
     reqadd X-Forwarded-Proto:\ https
-    default_backend broker-admin
+    default_backend dashboard
 
 backend broker
     mode http
@@ -70,6 +69,16 @@ backend dashboard
     mode http
     balance roundrobin
     server broker_1 172.16.129.6:8080 check inter 1000    
+```
+- certificate
+```
+cat /etc/haproxy/cert
+-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----
+-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----
 ```
 
 ## haproxy 시작
