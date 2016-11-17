@@ -4,6 +4,11 @@ This is experiment for cloudfoundry mongodb service broker.
 We will deploy mongodb cluster and mongodb service in a single node. 
 
 ## Mongodb
+#### Architecture
+
+![Architecture](http://www.sohamkamani.com/assets/images/posts/docker-mongo-replication/architecture-diagram.png)
+
+#### Installation
 
 
 ## Reference
