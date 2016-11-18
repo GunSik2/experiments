@@ -43,6 +43,9 @@ ex) cf create-service-broker cf-containers-broker containers containers http://1
 ```
 - enable service
 ```
+# show all service plan and access
+cf service-access
+
 # enable all service plan
 cf enable-service-access SERVICE
 ex) cf enable-service-access postgresql93
