@@ -39,17 +39,21 @@ bosh deploy
   - BROKER_HOST = properties.broker.host
 ```
 cf create-service-broker BROKER_NAME BROKER_USER BROKER_PASS https://BROKER_HOST
-
-sample)
-cf create-service-broker cf-containers-broker containers containers http://10.104.2.10
+ex) cf create-service-broker cf-containers-broker containers containers http://10.104.2.10
 ```
 - enable service
 ```
-# enable all services
+# enable all service plan
 cf enable-service-access SERVICE
+ex) cf enable-service-access postgresql93
 
-# enalbe specific services
+# enalbe specific service plan
 cf enable-service-access SERVICE -p PLAN -o ORG
+
+# enalbe all services and plans
+while read p __; do
+    cf enable-service-access "$p";
+done < <(cf service-access | awk '/orgs/{y=1;next}y && NF' | sort | uniq)
 ```
 - create service instance
 ```
