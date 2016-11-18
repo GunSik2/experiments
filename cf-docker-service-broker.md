@@ -39,6 +39,9 @@ bosh deploy
   - BROKER_HOST = properties.broker.host
 ```
 cf create-service-broker BROKER_NAME BROKER_USER BROKER_PASS https://BROKER_HOST
+
+sample)
+cf create-service-broker cf-containers-broker containers containers http://10.104.2.10
 ```
 - enable service
 ```
