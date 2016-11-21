@@ -75,3 +75,4 @@ cf bind-service APP_INSTAANCE_NAME SERVICE_INSTANCE_NAME
 - [cloud.gov Docker-broker manifest][(https://github.com/18F/cg-manifests)
 - [Git: Containers Service Broker for Cloud Foundry](https://github.com/cloudfoundry-community/cf-containers-broker)
 - [Git: Bosh release for Docker](https://github.com/cloudfoundry-community/docker-boshrelease)
+- [Git: Kubernetes Service Broker](https://github.com/kubernetes-incubator/service-catalog)
