@@ -76,3 +76,4 @@ cf bind-service APP_INSTAANCE_NAME SERVICE_INSTANCE_NAME
 - [Git: Containers Service Broker for Cloud Foundry](https://github.com/cloudfoundry-community/cf-containers-broker)
 - [Git: Bosh release for Docker](https://github.com/cloudfoundry-community/docker-boshrelease)
 - [Git: Kubernetes Service Broker](https://github.com/kubernetes-incubator/service-catalog)
+- HOW-TO How to use OpenStack Cinder with Docker Swarm clusters [1](http://superuser.openstack.org/articles/how-to-use-openstack-cinder-for-docker/) [2](http://superuser.openstack.org/articles/how-to-use-cinder-with-swarm/)
