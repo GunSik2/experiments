@@ -19,6 +19,13 @@
 - three managers with single consul 
 
 #### Provisioning Instances with docker-machine
+- Install docker-machine
+```
+curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
+chmod +x /usr/local/bin/docker-machine
+docker-machine version
+```
+- Provision nodes
 ```
 vi dmachine.env
 export OS_FLAVOR_ID=6
