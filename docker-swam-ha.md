@@ -28,22 +28,33 @@ docker-machine version
 
 - Provision nodes
 ```
+vi paas.rc
+OS_AUTH_URL
+OS_TENANT_ID
+OS_TENANT_NAME
+OS_USERNAME
+OS_PASSWORD
 
 vi dmachine.env
-export OS_FLAVOR_ID=6
-export OS_DOMAIN_NAME=Default
-export OS_IMAGE_ID=d5c276bc-cb70-42c4-9291-96f40a03a74c
+export OS_IMAGE_ID=5edf9486-e3b0-445e-a1d2-525313e1bdc1   #nova image-list
+export OS_FLAVOR_ID=3                                     #nova flavor-list
+export OS_NETWORK_ID=51d1d3b5-d972-453f-88a6-6ebe38fe4dbf #nova net-list   
 export OS_SSH_USER=ubuntu
-export OS_KEYPAIR_NAME=swarm
-export OS_PRIVATE_KEY_FILE=$HOME/.ssh/id_rsa
-export OS_SSH_USER=ubuntu
-export OS_TENANT_ID=$OS_PROJECT_ID
+export OS_SECURITY_GROUPS=docker
+#export OS_KEYPAIR_NAME=bosh  #swarm
+#export OS_PRIVATE_KEY_FILE=$HOME/.ssh/bosh.pem
 
+. paas.rc
 . dmachine.env
 for each in 1 2 3 4; do; docker-machine create -d openstack swarm-$each &; done
 docker-machine ls
 
 $ eval $(docker-machine env swarm-1)
+```
+- Trouble-shooting: network name server setting
+```
+stg@jumpbox:~⟫ neutron subnet-update d46407a9-fd76-441c-bc55-cf44c6bca257 --dns-nameservers list=true 8.8.8.8
+stg@jumpbox:~⟫ neutron subnet-show d46407a9-fd76-441c-bc55-cf44c6bca257
 ```
 
 #### Provisioning Instances with nova cli
