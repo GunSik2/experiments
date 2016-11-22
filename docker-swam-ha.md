@@ -41,8 +41,7 @@ export OS_FLAVOR_ID=3                                     #nova flavor-list
 export OS_NETWORK_ID=51d1d3b5-d972-453f-88a6-6ebe38fe4dbf #nova net-list   
 export OS_SSH_USER=ubuntu
 export OS_SECURITY_GROUPS=docker
-#export OS_KEYPAIR_NAME=bosh  #swarm
-#export OS_PRIVATE_KEY_FILE=$HOME/.ssh/bosh.pem
+export OS_SECURITY_GROUPS=swarm
 
 . paas.rc
 . dmachine.env
