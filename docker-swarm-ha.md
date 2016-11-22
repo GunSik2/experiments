@@ -131,8 +131,144 @@ docker -H <manager1 IP>:4000 info
 ```
 docker run -d swarm join --advertise=<node IP>:2375 consul://<consul IP>:8500
 ```
+#### etcd cluster on three master nodes 
+- Install
+```
+vi etcd_cluster.sh
+ETCD_VERSION=v3.0.0
+TOKEN=etcd-token
+CLUSTER_STATE=new
+NAME_1="etcd-0"
+NAME_2="etcd-1"
+NAME_3="etcd-2"
+HOST_1=10.101.0.22
+HOST_2=10.101.0.21
+HOST_3=10.101.0.23
+CLUSTER=${NAME_1}=http://${HOST_1}:2380,${NAME_2}=http://${HOST_2}:2380,${NAME_3}=http://${HOST_3}:2380
+LISTEN_IP=0.0.0.0
+
+# For node 1
+function etcd1() {
+  THIS_NAME=${NAME_1}
+  THIS_IP=${HOST_1}
+  sudo docker run -d -p 2379:2379 -p 2380:2380 --name etcd quay.io/coreos/etcd:${ETCD_VERSION} \
+      /usr/local/bin/etcd \
+      --data-dir=data.etcd --name ${THIS_NAME} \
+      --initial-advertise-peer-urls http://${THIS_IP}:2380 --listen-peer-urls http://${LISTEN_IP}:2380 \
+      --advertise-client-urls http://${THIS_IP}:2379 --listen-client-urls http://${LISTEN_IP}:2379 \
+      --initial-cluster ${CLUSTER} \
+      --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+}
+
+# For node 2
+function etcd2() {
+  THIS_NAME=${NAME_2}
+  THIS_IP=${HOST_2}
+  sudo docker run -d -p 2379:2379 -p 2380:2380 --name etcd quay.io/coreos/etcd:${ETCD_VERSION} \
+      /usr/local/bin/etcd \
+      --data-dir=data.etcd --name ${THIS_NAME} \
+      --initial-advertise-peer-urls http://${THIS_IP}:2380 --listen-peer-urls http://${LISTEN_IP}:2380 \
+      --advertise-client-urls http://${THIS_IP}:2379 --listen-client-urls http://${LISTEN_IP}:2379 \
+      --initial-cluster ${CLUSTER} \
+      --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+}
+
+# For node 3
+function etcd3() {
+  THIS_NAME=${NAME_3}
+  THIS_IP=${HOST_3}
+  sudo docker run -d -p 2379:2379 -p 2380:2380 --name etcd quay.io/coreos/etcd:${ETCD_VERSION} \
+      /usr/local/bin/etcd \
+      --data-dir=data.etcd --name ${THIS_NAME} \
+      --initial-advertise-peer-urls http://${THIS_IP}:2380 --listen-peer-urls http://${LISTEN_IP}:2380 \
+      --advertise-client-urls http://${THIS_IP}:2379 --listen-client-urls http://${LISTEN_IP}:2379 \
+      --initial-cluster ${CLUSTER} \
+      --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+}
+$*
 
 
+docker-machine ssh swarm-1 "bash -s" < bin/etcd_cluster.sh etcd1
+docker-machine ssh swarm-2 "bash -s" < bin/etcd_cluster.sh etcd2
+docker-machine ssh swarm-3 "bash -s" < bin/etcd_cluster.sh etcd3
+```
+- Probe
+```
+curl -L 10.101.0.22:2379/version    
+curl -L 10.101.0.22:2379/v2/stats/leader | jq
+{
+  "leader": "398c17227fb5a79d",
+  "followers": {
+    "2528e52980223be9": {
+      "latency": {
+        "current": 0.002113,
+        "average": 0.006612783783783781,
+        "standardDeviation": 0.04308765319156819,
+        "minimum": 0.000929,
+        "maximum": 0.642134
+      },
+      "counts": {
+        "fail": 39,
+        "success": 222
+      }
+    },
+    "643b458c9c66ac8c": {
+      "latency": {
+        "current": 0.00197,
+        "average": 0.004077473972602739,
+        "standardDeviation": 0.006005751956387417,
+        "minimum": 0.00097,
+        "maximum": 0.104687
+      },
+      "counts": {
+        "fail": 0,
+        "success": 365
+      }
+    }
+  }
+}
+```
+- Failover Test
+```
+docker-machine ssh swarm-3 "sudo docker stop etcd; sudo docker rm etcd"
+curl -L 10.101.0.22:2379/v2/stats/leader | jq
+docker-machine ssh swarm-3 "bash -s" < bin/etcd_cluster.sh etcd3
+curl -L 10.101.0.22:2379/v2/stats/leader | jq
+
+docker-machine ssh swarm-1 "sudo docker stop etcd; sudo docker rm etcd"
+curl -L 10.101.0.21:2379/v2/stats/leader | jq
+docker-machine ssh swarm-1 "bash -s" < bin/etcd_cluster.sh etcd1
+curl -L 10.101.0.21:2379/v2/stats/leader | jq
+```
+- Failover trobuleshooting : etcdmain: member 2528e52980223be9 has already been bootstrapped 
+    - If you lost the data dir of a member, you cannot restart a member that was in the cluster. 
+    - If you lost your data dir, you have to remove that member via dynamic configuration API start etcd with previous configuration.
+```
+remove the old member via dynamic configuration API
+add the new member via dynamic configuration API
+remove all residuals datas : `rm -rf /var/lib/etcd2/*`
+start etcd with initial-cluster=existing
+```   
+- Further action for production
+  - etcd tls configuration
+  - etcd data store to use host volume or ceph
+```
+function etcd1() {
+  THIS_NAME=${NAME_1}
+  THIS_IP=${HOST_1}
+  sudo mkdir /var/local/etcd
+  sudo docker run -d -p 2379:2379 -p 2380:2380 -v /var/local/etcd:/data --name etcd quay.io/coreos/etcd:${ETCD_VERSION} \
+      /usr/local/bin/etcd \
+      --data-dir=/data --name ${THIS_NAME} \
+      --initial-advertise-peer-urls http://${THIS_IP}:2380 --listen-peer-urls http://${LISTEN_IP}:2380 \
+      --advertise-client-urls http://${THIS_IP}:2379 --listen-client-urls http://${LISTEN_IP}:2379 \
+      --initial-cluster ${CLUSTER} \
+      --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+}
+
+curl http://10.101.0.22:2379/v2/keys/message -XPUT -d value="Hello world"
+curl http://10.101.0.22:2379/v2/keys/message
+```
 ## volplugin
 ### Components
 - apiserver :  API service taht give volcli a way to coordinate with the cluster at large. Store state with etcd
@@ -163,7 +299,8 @@ docker run -d swarm join --advertise=<node IP>:2375 consul://<consul IP>:8500
 - [Swarm - MySQL : MySQL on Docker](http://severalnines.com/blog/mysql-docker-introduction-docker-swarm-mode-and-multi-host-networking)
 - [CDocker - CEPH : GETTING STARTED WITH THE DOCKER RBD VOLUME PLUGIN](http://ceph.com/planet/getting-started-with-the-docker-rbd-volume-plugin/)
 - [Docker - CEPH : Contiv volplugin](https://github.com/contiv/volplugin)
-
+- [Docker etcd cluster : Run etcd clusters inside containers](https://github.com/coreos/etcd/blob/master/Documentation/op-guide/container.md)
+- [etcd api](https://coreos.com/etcd/docs/latest/api.html)
 
 ### Appendix
 - Docker-machine options
