@@ -18,7 +18,28 @@
 #### Topology
 - three managers with single consul 
 
-#### Install Docker Engine on each Server
+#### Provisioning Instances with docker-machine
+```
+vi dmachine.env
+export OS_FLAVOR_ID=6
+export OS_DOMAIN_NAME=Default
+export OS_IMAGE_ID=d5c276bc-cb70-42c4-9291-96f40a03a74c
+export OS_SSH_USER=ubuntu
+export OS_KEYPAIR_NAME=swarm
+export OS_PRIVATE_KEY_FILE=$HOME/.ssh/id_rsa
+export OS_SSH_USER=ubuntu
+export OS_TENANT_ID=$OS_PROJECT_ID
+
+. dmachine.env
+for each in 1 2 3 4; do; docker-machine create -d openstack swarm-$each &; done
+docker-machine ls
+
+$ eval $(docker-machine env swarm-1)
+```
+
+#### Provisioning Instances with nova cli
+- Create nodes
+- Install Docker Engine on each Server
 ```
 sudo apt-get install curl -y
 curl -sSL https://get.docker.com/ | sh
@@ -109,6 +130,7 @@ docker run -d swarm join --advertise=<node IP>:2375 consul://<consul IP>:8500
 ```
 
 ## Reference
+- [Swarm Openstak : How to Swarm on OpenStack](https://j-griffith.github.io/articles/2016-09/how-to-swarm-on-openstack)
 - [Swarm Cluster : How to Configure Docker Swarm](https://www.upcloud.com/support/how-to-configure-docker-swarm/)
 - [Swarm Cluster : High availability in Docker Swarm](https://docs.docker.com/swarm/multi-manager-setup/)
 - [Swarm Cluster : Plan for Swarm in production](https://docs.docker.com/swarm/plan-for-production/)
