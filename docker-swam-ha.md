@@ -46,15 +46,17 @@ export OS_SECURITY_GROUPS=docker
 
 . paas.rc
 . dmachine.env
-for each in 1 2 3 4; do; docker-machine create -d openstack swarm-$each &; done
+docker-machine create -d openstack swarm-1
+docker-machine create -d openstack swarm-2
+docker-machine create -d openstack swarm-3
 docker-machine ls
 
 $ eval $(docker-machine env swarm-1)
 ```
 - Trouble-shooting: network name server setting
 ```
-stg@jumpbox:~⟫ neutron subnet-update d46407a9-fd76-441c-bc55-cf44c6bca257 --dns-nameservers list=true 8.8.8.8
-stg@jumpbox:~⟫ neutron subnet-show d46407a9-fd76-441c-bc55-cf44c6bca257
+$ neutron subnet-update d46407a9-fd76-441c-bc55-cf44c6bca257 --dns-nameservers list=true 8.8.8.8
+$ neutron subnet-show d46407a9-fd76-441c-bc55-cf44c6bca257
 ```
 
 #### Provisioning Instances with nova cli
