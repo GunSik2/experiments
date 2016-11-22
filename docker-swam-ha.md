@@ -116,14 +116,18 @@ docker start <swarm manager name>
 docker -H <manager1 IP>:4000 info
 ```
 
-### Installation: five nodes
+### HA Installation: five nodes 
 #### Topology 
 - three seperate managers with three consul  
 - two worker nodes 
 
-#### each worker node
+#### Consideration
+- master should be provisioned in separated zones
+- consul/etcd should be provisoned in at least 3 nodes
+- persistent volume, such as ceph should be provisioned.
+- master node & worker node seperation for stable master node service: master node no more services worker in itself.
 
-#### each worker node
+#### Add two worker nodes
 ```
 docker run -d swarm join --advertise=<node IP>:2375 consul://<consul IP>:8500
 ```
