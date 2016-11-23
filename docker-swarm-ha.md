@@ -118,7 +118,7 @@ docker -H <manager1 IP>:4000 info
 
 ### HA Installation: five nodes 
 #### Topology 
-- three seperate managers with three consul  
+- three seperate managers with three etcd   
 - two worker nodes 
 
 #### Consideration
@@ -126,6 +126,17 @@ docker -H <manager1 IP>:4000 info
 - consul/etcd should be provisoned in at least 3 nodes
 - persistent volume, such as ceph should be provisioned.
 - master node & worker node seperation for stable master node service: master node no more services worker in itself.
+
+#### master nodes deployment
+- install etcd cluster on three master nodes: refer to the following chapter
+- install swarm master nodes in each swarm nodes
+```
+# master manager server
+docker run -d -p <manager1 IP>:4000:4000 --name swarm swarm manage -H :4000 --replication --advertise <manager1 IP>:4000 etcd://<etcd_addr1>:2379,<etcd_addr2>:2379,<etcd_addr3>:2379
+# slave manager server
+docker run -d -p <manager2 IP>:4000:4000 --name swarm swarm manage -H :4000 --replication --advertise <manager2 IP>:4000 etcd://<etcd_addr1>:2379,<etcd_addr2>:2379,<etcd_addr3>:2379
+docker run -d -p <manager3 IP>:4000:4000 --name swarm swarm manage -H :4000 --replication --advertise <manager3 IP>:4000 etcd://<etcd_addr1>:2379,<etcd_addr2>:2379,<etcd_addr3>:2379
+```
 
 #### Add two worker nodes
 ```
@@ -296,6 +307,8 @@ curl http://10.101.0.22:2379/v2/keys/message
 - [Swarm Cluster : How to Configure Docker Swarm](https://www.upcloud.com/support/how-to-configure-docker-swarm/)
 - [Swarm Cluster : High availability in Docker Swarm](https://docs.docker.com/swarm/multi-manager-setup/)
 - [Swarm Cluster : Plan for Swarm in production](https://docs.docker.com/swarm/plan-for-production/)
+- [Swarm Cluster : Docker Swarm discovery](https://docs.docker.com/swarm/discovery/)
+- [Swarm Cluster : Docker comes with multiple Discovery backends](https://github.com/docker/docker/tree/master/pkg/discovery)
 - [Swarm - MySQL : MySQL on Docker](http://severalnines.com/blog/mysql-docker-introduction-docker-swarm-mode-and-multi-host-networking)
 - [CDocker - CEPH : GETTING STARTED WITH THE DOCKER RBD VOLUME PLUGIN](http://ceph.com/planet/getting-started-with-the-docker-rbd-volume-plugin/)
 - [Docker - CEPH : Contiv volplugin](https://github.com/contiv/volplugin)
