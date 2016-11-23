@@ -129,7 +129,7 @@ docker -H <manager1 IP>:4000 info
 
 #### master nodes deployment
 - install etcd cluster on three master nodes: refer to the following chapter
-- install swarm master nodes in each swarm nodes
+- install swarm master/slave in swarm nodes
 ```
 # master manager server
 docker run -d -p <manager1 IP>:4000:4000 --name swarm swarm manage -H :4000 --replication --advertise <manager1 IP>:4000 etcd://<etcd_addr1>:2379,<etcd_addr2>:2379,<etcd_addr3>:2379
@@ -139,9 +139,19 @@ docker run -d -p <manager3 IP>:4000:4000 --name swarm swarm manage -H :4000 --re
 ```
 
 #### Add two worker nodes
+- join worker node
 ```
 docker run -d swarm join --advertise=<node IP>:2375 consul://<consul IP>:8500
 ```
+- check swarm state
+```
+docker -H 10.101.0.22:4000 info
+```
+
+#### trouble shooting
+- Cannot connect to the Docker daemon. Is the docker daemon running on this host
+
+
 #### etcd cluster on three master nodes 
 - Install
 ```
@@ -239,6 +249,17 @@ curl -L 10.101.0.22:2379/v2/stats/leader | jq
   }
 }
 ```
+- action : CRUD
+```
+curl 10.101.0.22:2379/v2/keys/message -XPUT -d value="Hello world"
+curl 10.101.0.22:2379/v2/keys/message
+curl 10.101.0.22:2379/v2/keys/message -XPUT -d value="Hello etcd"
+curl 10.101.0.22:2379/v2/keys/message
+curl 10.101.0.22:2379/v2/keys/message -XDELETE
+
+curl 10.101.0.22:2379/v2/keys/swarm?recursive=true -XDELETE
+curl 10.101.0.22:2379/v2/keys/swarm?recursive=true | jq
+```
 - Failover Test
 ```
 docker-machine ssh swarm-3 "sudo docker stop etcd; sudo docker rm etcd"
@@ -314,7 +335,7 @@ curl http://10.101.0.22:2379/v2/keys/message
 - [Docker - CEPH : Contiv volplugin](https://github.com/contiv/volplugin)
 - [Docker etcd cluster : Run etcd clusters inside containers](https://github.com/coreos/etcd/blob/master/Documentation/op-guide/container.md)
 - [etcd api](https://coreos.com/etcd/docs/latest/api.html)
-
+- [swarm join virtualbox case](https://github.com/docker/swarm/issues/2341)
 ### Appendix
 - Docker-machine options
 ```
