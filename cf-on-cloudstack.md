@@ -43,6 +43,7 @@ jobs:
 
 ## Reference
 - [Bosh-cloudstack-cpi-release Git](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-release)
-- [Bosh-cloudstack-cpi-release Release]http://bosh.io/releases/github.com/cloudfoundry-community/bosh-cloudstack-cpi-release?all=1)
+- [Bosh-cloudstack-cpi-release Release](http://bosh.io/releases/github.com/cloudfoundry-community/bosh-cloudstack-cpi-release?all=1)
 - [Bosh-cloudstack-cpi-release Job configuration](http://bosh.io/jobs/cloudstack_cpi?source=github.com/cloudfoundry-community/bosh-cloudstack-cpi-release&version=15)
 - [Bosh Release 260](http://bosh.io/releases/github.com/cloudfoundry/bosh?version=260)
+- [CloudStack Documentation](http://docs.cloudstack.apache.org/en/latest/)
