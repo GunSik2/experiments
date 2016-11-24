@@ -1,6 +1,6 @@
 ## Docker Swarm
 
-#### Installation
+### Installation
 - manager01
 ```
 $ docker swarm init --advertise-addr 10.101.0.22
@@ -42,20 +42,20 @@ ID                           HOSTNAME     STATUS  AVAILABILITY  MANAGER STATUS
 9xobningonsptorguyv5bukfm *  swarm-1      Ready   Active        Leader
 ```
 
-#### Test
-- Deploy Service (manager01)
+### Test
+#### Deploy Service (manager01)
 ```
 $ docker service create --replicas 1 --name helloworld alpine ping docker.com
 $ docker service ls
 ```
-- Inspect a service on the swarm (manager01)
+#### Inspect a service on the swarm (manager01)
 ```
 $ docker service inspect --pretty helloworld
 $ docker service inspect helloworld
 $ docker service ps helloworld
 $ docker ps  
 ```
-- Scale the service in the swarm (manager01)
+#### Scale the service in the swarm (manager01)
 ```
 $ docker service scale helloworld=5
 ID                         NAME          IMAGE   NODE         DESIRED STATE  CURRENT STATE           ERROR
@@ -65,11 +65,11 @@ ID                         NAME          IMAGE   NODE         DESIRED STATE  CUR
 20vapdwt8taogskewal0pqxzs  helloworld.4  alpine  swarm-z1-01  Running        Running 23 seconds ago
 8nfhrxs34voob79aav1ludalh  helloworld.5  alpine  swarm-1      Running        Running 24 seconds ago
 ```
-- Delete the service running on the swarm (manager01)
+#### Delete the service running on the swarm (manager01)
 ```
 $ docker service rm helloworld
 ```
-- Apply rolling updates to a service (manager01)
+#### Apply rolling updates to a service (manager01)
 ```
 $ docker service create \
   --replicas 3 \
@@ -91,7 +91,7 @@ $ docker service inspect --pretty redis
 
 $ docker service update redis  // update restart if the update fails
 ``` 
-- Drain a node on the swarm (manager01)
+#### Drain a node on the swarm (manager01)
 ```
 $ docker node ls
 ID                           HOSTNAME     STATUS  AVAILABILITY  MANAGER STATUS
@@ -108,8 +108,64 @@ ergvhxl8my9hone0zl7z3x2q3  redis.3      redis:3.0.7  worker2  Running        Run
 $ docker node update --availability active worker1
 $ docker node inspect --pretty worker1
 ```
+#### Use swarm mode routing mesh
+- Concept
+  - routeing mesh enalbes to publish ports for services to make them available to resources outside the swarm
+  - All nodes participate in an ingress routing mesh
+  - Need to have the following ports open between the swarm nodes
+    - Port 7946 TCP/UDP for container network discovery.
+    - Port 4789 UDP for the container ingress network.
+    
+- Publish a port for a service
+  - Target image: published(8080), container(80)
+![ingress-routing-mesh](https://docs.docker.com/engine/swarm/images/ingress-lb.png)
 
+- ingress-routing : when creating new service 
+```
+$ docker service create  \
+   --name my-web \
+   --publish 8080:80 \
+   --replicas 2 \
+    nginx
+```
+- publish a port for an existing service 
+```
+$ docker service update \
+   --publish-add 8081:80 \
+   my-web
+```
+- check published port
+```
+$ docker service inspect --pretty my-web
+...
+Ports:
+ Protocol = tcp
+ TargetPort = 80
+ PublishedPort = 8080
+ Protocol = tcp
+ TargetPort = 80
+ PublishedPort = 8081
+```
+- Configure an external load balancer with haproxy
+```
+global
+        log /dev/log    local0
+        log /dev/log    local1 notice
+...snip...
 
+# Configure HAProxy to listen on port 80
+frontend http_front
+   bind *:80
+   stats uri /haproxy?stats
+   default_backend http_back
+
+# Configure HAProxy to route requests to swarm nodes on port 8080
+backend http_back
+   balance roundrobin
+   server node1 192.168.99.100:8080 check
+   server node2 192.168.99.101:8080 check
+   server node3 192.168.99.102:8080 check
+```
 
 ## Reference
 - [Docker Swarm v1.12](https://docs.docker.com/engine/swarm/)
