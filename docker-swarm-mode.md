@@ -169,3 +169,4 @@ backend http_back
 
 ## Reference
 - [Docker Swarm v1.12](https://docs.docker.com/engine/swarm/)
+- [Docker and Swarm Mode](https://lostechies.com/gabrielschenker/2016/09/05/docker-and-swarm-mode-part-1/)
