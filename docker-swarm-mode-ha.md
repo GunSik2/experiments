@@ -83,6 +83,15 @@ $ curl localhost:5000/v2/_catalog
 ### Persistency with host volume
 ### Persistency with remote volume
 ### Resource constraints: CPU, Memory, Disk 
+- CPU & Memory
+```
+$ docker service create --help
+Options:
+      --limit-cpu value                Limit CPUs (default 0.000)
+      --limit-memory value             Limit Memory (default 0 B)
+      --reserve-cpu value              Reserve CPUs (default 0.000)
+      --reserve-memory value           Reserve Memory (default 0 B)
+```
 ### Failover
 ### Service routing 
 
@@ -98,4 +107,5 @@ $ curl localhost:5000/v2/_catalog
 - Docker and swarm mode [part1](https://lostechies.com/gabrielschenker/2016/09/05/docker-and-swarm-mode-part-1/) [part2](https://lostechies.com/gabrielschenker/2016/09/11/docker-and-swarm-mode-part-2/) [part3](https://lostechies.com/gabrielschenker/2016/10/05/docker-and-swarm-mode-part-3/) [part4](https://lostechies.com/gabrielschenker/2016/10/22/docker-and-swarmkit-part-4/)
 - [Docker Flow Proxy](https://github.com/vfarcic/docker-flow-proxy) [article1](https://technologyconversations.com/2016/08/01/integrating-proxy-with-docker-swarm-tour-around-docker-1-12-series/)
 - [Docker 1.12 Networking Model](http://collabnix.com/archives/1391)
+- [docker service create options](https://docs.docker.com/engine/reference/commandline/service_create/)
 - [docker monitoring: cockpit](http://cockpit-project.org/)
