@@ -94,7 +94,7 @@ CLI option	                        Environment variable	              Default
 --virtualbox-no-dns-proxy	          VIRTUALBOX_NO_DNS_PROXY	            false
 --virtualbox-no-vtx-check	          VIRTUALBOX_NO_VTX_CHECK	            false
 ```
-## [Supported Drivers]((https://docs.docker.com/machine/drivers/))
+## [Supported Drivers](https://docs.docker.com/machine/drivers/)
 - Drivers
   - Amazon Web Services
   - Microsoft Azure
