@@ -147,6 +147,7 @@ $ docker run -it --storage-opt size=120G fedora /bin/bash
 ```
 ### Failover
 ### Service routing  
+### Authentication & Authorization
 
 ## HA Service 
 ### Persistency with host volume
@@ -154,6 +155,7 @@ $ docker run -it --storage-opt size=120G fedora /bin/bash
 ### Resource constraints: CPU, Memory, Disk 
 ### Failover
 ### Service routing 
+### Authentication & Authorization
 
 
 ## Reference
