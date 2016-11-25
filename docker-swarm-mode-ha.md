@@ -92,7 +92,15 @@ Options:
       --reserve-cpu value              Reserve CPUs (default 0.000)
       --reserve-memory value           Reserve Memory (default 0 B)
 ```
-- Disk : [docker run option](https://docs.docker.com/engine/reference/commandline/run/#/set-storage-driver-options-per-container) available for devicemapper, btrfs, and zfs drivers. 
+### Resource constraint: Disk
+- [dockerd storage driver option](https://docs.docker.com/engine/reference/commandline/dockerd/#/daemon-storage-driver-option)
+  - boot2linux doesn't support to change auft to devicemapper
+```
+$ cat /var/lib/boot2docker/profile
+DOCKER_STORAGE=aufs  #devicemapper
+$ /etc/init.d/docker restart   # dockerd --storage-driver=devicemapper 
+```
+- [docker run option](https://docs.docker.com/engine/reference/commandline/run/#/set-storage-driver-options-per-container) available for devicemapper, btrfs, and zfs drivers. 
   - Recommended storage driver in CS Engine compatibility matrix : [performance comparison](https://docs.docker.com/engine/userguide/storagedriver/images/driver-pros-cons.png)
     - vRHEL 7.0, 7.1, 7.2: devicemapper
     - Ubuntu: aufs3
