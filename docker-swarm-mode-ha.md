@@ -164,3 +164,4 @@ $ docker run -it --storage-opt size=120G fedora /bin/bash
 - [Docker 1.12 Networking Model](http://collabnix.com/archives/1391)
 - [docker monitoring: cockpit](http://cockpit-project.org/)
 - [docker storage driver](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/)
+- [docker storage driver : ceph support](https://github.com/contiv/volplugin)
