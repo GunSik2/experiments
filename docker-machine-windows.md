@@ -4,7 +4,7 @@
 - Download & Install it
 - Run Docker QuickStart Terminal
 
-## 
+## Using Docker Machine
 - create vm
 ```
 docker-machine create --driver virtualbox sample
