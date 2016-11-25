@@ -92,8 +92,20 @@ Options:
       --reserve-cpu value              Reserve CPUs (default 0.000)
       --reserve-memory value           Reserve Memory (default 0 B)
 ```
+- Disk : [docker run option](https://docs.docker.com/engine/reference/commandline/run/#/set-storage-driver-options-per-container) available for devicemapper, btrfs, and zfs drivers. 
+  - Recommended storage driver in CS Engine compatibility matrix : [performance comparison](https://docs.docker.com/engine/userguide/storagedriver/images/driver-pros-cons.png)
+    - vRHEL 7.0, 7.1, 7.2: devicemapper
+    - Ubuntu: aufs3
+    - CentOS 7.1-1503, 7.2-1511: devicemapper
+    - SLES: btrfs
+```
+$ docker info | grep Driver
+Storage Driver: aufs
+
+$ docker run -it --storage-opt size=120G fedora /bin/bash
+```
 ### Failover
-### Service routing 
+### Service routing  
 
 ## HA Service 
 ### Persistency with host volume
@@ -108,3 +120,4 @@ Options:
 - [Docker Flow Proxy](https://github.com/vfarcic/docker-flow-proxy) [article1](https://technologyconversations.com/2016/08/01/integrating-proxy-with-docker-swarm-tour-around-docker-1-12-series/)
 - [Docker 1.12 Networking Model](http://collabnix.com/archives/1391)
 - [docker monitoring: cockpit](http://cockpit-project.org/)
+- [docker storage driver](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/)
