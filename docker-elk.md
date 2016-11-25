@@ -2,7 +2,12 @@
 
 - 2G 이상 메모리
 - sysctl -w vm.max_map_count=262144
-- sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
+```
+sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
+
+sudo docker exec -it <container-name> /bin/bash
+/opt/logstash/bin/logstash -e 'input { stdin { } } output { elasticsearch { hosts => ["localhost"] } }'
+```
 
 ## Another method
 docker network create --driver overlay logging
