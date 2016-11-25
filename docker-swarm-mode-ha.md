@@ -84,14 +84,17 @@ $ curl localhost:5000/v2/_catalog
 ### Persistency with remote volume
 ### Resource constraints: CPU, Memory, Disk 
 ### Failover
+### Service routing 
 
 ## HA Service 
 ### Persistency with host volume
 ### Persistency with distributed volume
 ### Resource constraints: CPU, Memory, Disk 
 ### Failover
+### Service routing 
 
 
 ## Reference
 - Docker and swarm mode [part1](https://lostechies.com/gabrielschenker/2016/09/05/docker-and-swarm-mode-part-1/) [part2](https://lostechies.com/gabrielschenker/2016/09/11/docker-and-swarm-mode-part-2/) [part3](https://lostechies.com/gabrielschenker/2016/10/05/docker-and-swarm-mode-part-3/) [part4](https://lostechies.com/gabrielschenker/2016/10/22/docker-and-swarmkit-part-4/)
+- [Docker Flow Proxy](https://github.com/vfarcic/docker-flow-proxy)
 - [docker monitoring: cockpit](http://cockpit-project.org/)
