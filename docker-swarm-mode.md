@@ -43,6 +43,65 @@ ID                           HOSTNAME     STATUS  AVAILABILITY  MANAGER STATUS
 ```
 
 ### Test
+
+#### Quick
+- Creating Services
+```
+docker service create --name Web --publish 80:80 --replicas=3 nginx:latest
+docker service ps Web
+```
+- Service Failover
+```
+$ docker-machine ssh node2
+$ docker kill [container ID] 
+$ docker service ps Web
+ID                         NAME       IMAGE         NODE   DESIRED STATE  CURRENT STATE           ERROR
+d0m8ujkejynkzkola79a0pi12  Web.1      nginx:latest  node4  Running        Running 10 minutes ago
+1iv99x23e7tvilpx5j2puddkc  Web.2      nginx:latest  node2  Running        Running 10 minutes ago
+citalz1pvfz857ykxq2edpz3x  Web.3      nginx:latest  node1  Running        Running 6 seconds ago
+27lnok5hjyd5vchsqrb01gqak   \_ Web.3  nginx:latest  node5  Shutdown       Failed 18 seconds ago   "task: non-zero exit (137)"
+```
+- Scaling a Service
+```
+docker service update Web --replicas 5
+docker service update Web --replicas 0
+```
+- Upgrading a service
+```
+docker service rm Web
+docker service create --name nginx --publish 80:80 --replicas 3 nginx:1.10.1
+docker service update nginx --image nginx:1.11.3
+```
+- Running a Service globally
+```
+docker service create --name debug --mode global alpine sleep 1000000000
+docker service ps debug
+```
+- Updating Engine : drain a node
+```
+docker node update --availability drain node5
+docker node update --availability active node5
+```
+- Removing Nodes from the Swarm
+```
+- docker swarm leave 
+```
+- Create a Network
+```
+docker network create test --driver overlay
+```
+- Service Discovery and Load Balancing
+```
+docker service create --name foo --replicas 1 --network test nginx
+docker service create --name bar --replicas 3 --network test --publish 8000:8000 jwilder/whoami
+docker service ps foo
+docker exec -it [container ID] /bin/bash
+> apt-get update && apt-get install -y curl
+> curl bar:8000
+// round-robin LB reponse 
+```
+
+
 #### Deploy Service (manager01)
 ```
 $ docker service create --replicas 1 --name helloworld alpine ping docker.com
