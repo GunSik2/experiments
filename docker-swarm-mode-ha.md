@@ -80,8 +80,30 @@ $ curl localhost:5000/v2/_catalog
 {"repositories":["alpine"]}
 ```
 
-### Persistency with host volume
-### Persistency with remote volume
+### Persistency with host / remote volume
+- volumen concept
+  - A bind-mount makes a file or directory on the host available to the container it is mounted within. A bind-mount may be either read-only or read-write. For example, a container might share its host's DNS information by means of a bind-mount of the host's /etc/resolv.conf or a container might write logs to its host's /var/log/myContainerLogs directory. If you use bind-mounts and your host and containers have different notions of permissions, access controls, or other such details, you will run into portability issues.
+  - A named volume is a mechanism for decoupling persistent data needed by your container from the image used to create the container and from the host machine. Named volumes are created and managed by Docker, and a named volume persists even when no container is currently using it. Data in named volumes can be shared between a container and the host machine, as well as between multiple containers. Docker uses a volume driver to create, manage, and mount volumes. You can back up or restore volumes using Docker commands.
+  - A tmpfs mounts a tmpfs inside a container for volatile data.
+- Supported types of bind-mounts and named volumes in a service : [docker named volume support](https://github.com/docker/docker/blob/master/docs/reference/commandline/service_create.md#add-bind-mounts-or-volumes)
+  - volume: mounts a managed volume into the container.
+  - bind: bind-mounts a directory or file from the host into the container.
+  - tmpfs: mount a tmpfs in the container
+- service using bind mount(host volumne)
+```
+$ docker service create --help
+Options:
+      --mount value                    Attach a mount to the service
+      
+$ docker service create \
+  --name my-service \
+  --mount type=bind,source=/path/on/host,destination=/path/in/container \
+  nginx:alpine
+```
+- service using named volume(host/remote volume) 
+```
+```
+  
 ### Resource constraints: CPU, Memory, Disk 
 - CPU & Memory : Use [docker service create options](https://docs.docker.com/engine/reference/commandline/service_create/)
 ```
