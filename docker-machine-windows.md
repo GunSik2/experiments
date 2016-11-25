@@ -31,6 +31,15 @@ curl $(docker-machine ip default):8000
 ```
 docker-machine rm sample
 ```
+
+## Change Docker machine location - Windows
+- Default path in Windows : C:\Users\username\.docker\machine\machines\
+- To change the path
+```
+export MACHINE_STORAGE_PATH=D:\\docker
+docker-machine create --driver=virtualbox docker1
+```
+
 ## Virtualbox driver configuration
 - driver options
 ```
