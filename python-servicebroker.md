@@ -1,6 +1,7 @@
 
-# Python on Windows
-## Modules
+# 
+## Python on Windows
+### Modules
 - cli import
 ```
 py -m pip install bottle
@@ -12,11 +13,14 @@ py service-broker.py
   - on the left column, select Project Interpreter
   - eventually click the + button to install additional python modules
 
-## Test
-- API Test: Tools > Test RESTful WebService
+### Test
+- postmant
+
+## Python Service Broker
+
 
 ## Tools
 - [python 3.5.2](https://www.python.org/downloads/release/python-352/)
 - [pycharm - python tool](https://www.jetbrains.com/pycharm/)
-- [pycharm - REST Client Tool Window](https://www.jetbrains.com/help/pycharm/2016.1/rest-client-tool-window.html)
 - postman - api call
+- https://github.com/dwatrous/cf-service-broker-python
