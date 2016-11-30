@@ -42,7 +42,7 @@ vfs:///opt/convoy/?backup=backup-f8649df9c27b4750\u0026volume=vol1
 
 - Test : Recover
   - You should see the recovered file /res1/foo
-``
+```
 sudo convoy create res1 --backup <backup_url>
 sudo docker run -v res1:/res1 --volume-driver=convoy ubuntu ls -l /res1
 ```
