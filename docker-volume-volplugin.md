@@ -1,5 +1,5 @@
 ## docker - volplugin
-- Docker Nodes
+- preparation : docker nodes
 ```
 docker-machine create -d openstack --openstack-availability-zone ZN_PAAS_01 node1 --openstack-floatingip-pool PN_PUB
 docker-machine create -d openstack --openstack-availability-zone ZN_PAAS_02 node2
