@@ -6,6 +6,7 @@
 ```
 sudo docker run -d --net=host -v /etc/ceph:/etc/ceph -e MON_IP=192.168.99.100 -e CEPH_PUBLIC_NETWORK=192.168.99.0/24 ceph/demo
 ```
+
 ## Flucker
 - Installing the Flocker Client
 ```
@@ -25,9 +26,6 @@ sudo apt-get -y install --force-yes clusterhq-flocker-cli
 - Installing the Flocker Node Services
 ```
 ```
-
-- 
-
 
 ## Flucker Docker
 - Installation
@@ -49,19 +47,6 @@ hello
 vagrant@node2:~$ exit
 ```
 
-## volplugin
-- Installation
-```
-sudo mount --make-shared /
-docker run -it -v /var/run/docker.sock:/var/run/docker.sock contiv/volplugin-autorun
-```
-- Test
-```
-docker run --rm --volume-driver volplugin -v simple:/data busybox sh -c "echo hello > /data/file.txt"
-docker run --rm --volume-driver volplugin -v simple:/data busybox sh -c "cat /data/file.txt"
-```
-
-## 
 
 ## Reference
 - https://github.com/ceph/ceph-docker
