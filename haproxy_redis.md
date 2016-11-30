@@ -13,6 +13,8 @@ ENABLED=1
 ### haproxy 설정
 - redis_haproxy
 ```
+cat /etc/haproxy/haproxy.cfg
+
 global
     log 127.0.0.1 local0 notice
     user haproxy
