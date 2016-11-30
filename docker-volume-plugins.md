@@ -26,7 +26,7 @@
 
 - Flocker
 
-[Flocker](https://sreeninet.files.wordpress.com/2015/07/flocker2.png)
+![Flocker](https://sreeninet.files.wordpress.com/2015/07/flocker2.png)
 
 
 
