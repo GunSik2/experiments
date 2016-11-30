@@ -1,11 +1,5 @@
+## Introduction
 
-
-## Docker ceph
-
-- Installation
-```
-sudo docker run -d --net=host -v /etc/ceph:/etc/ceph -e MON_IP=192.168.99.100 -e CEPH_PUBLIC_NETWORK=192.168.99.0/24 ceph/demo
-```
 
 ## Flucker
 - Installing the Flocker Client
@@ -48,9 +42,18 @@ vagrant@node2:~$ exit
 ```
 
 
+## Docker ceph
+
+- Installation
+```
+sudo docker run -d --net=host -v /etc/ceph:/etc/ceph -e MON_IP=192.168.99.100 -e CEPH_PUBLIC_NETWORK=192.168.99.0/24 ceph/demo
+```
+
+
 ## Reference
-- https://github.com/ceph/ceph-docker
 - https://flocker-docs.clusterhq.com/en/latest/docker-integration/manual-install.html
 - https://clusterhq.com/2016/04/27/ceph-flocker/
-- http://www.slideshare.net/jgriffith8/consuming-cinder-from-docker-65993634?next_slideshow=1
-- https://gist.github.com/philipz/47b076de5cc468ff2c16#file-ceph-md
+- https://flocker-docs.clusterhq.com/en/latest/supported/index.html
+- https://github.com/ClusterHQ/ceph-flocker-driver
+- https://github.com/ceph/ceph-docker
+- https://flocker-docs.clusterhq.com/en/latest/flocker-standalone/manual-install.html
