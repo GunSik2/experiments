@@ -36,3 +36,4 @@ resource_pools:
 - [Bosh-cloudstack-cpi-release Job configuration](http://bosh.io/jobs/cloudstack_cpi?source=github.com/cloudfoundry-community/bosh-cloudstack-cpi-release&version=15)
 - [Bosh Release 260](http://bosh.io/releases/github.com/cloudfoundry/bosh?version=260)
 - [CloudStack Documentation](http://docs.cloudstack.apache.org/en/latest/)
+- [bosh-cloudstack-cpi-core](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-core)
