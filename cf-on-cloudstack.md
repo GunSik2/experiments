@@ -28,6 +28,7 @@ resource_pools:
 
 ...
 ```
+- [bosh.yml template](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-release/blob/master/templates/bosh-init.yml)
 
 ## Reference
 - [Bosh-cloudstack-cpi-release Git](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-release)
