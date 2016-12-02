@@ -15,7 +15,7 @@ releases:
 - name: bosh
   url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=260
   sha1: f8f086974d9769263078fb6cb7927655744dacbc
-- name: bosh-cloudstack-cpi
+- name: bosh-cloudstack-cpi-release
   url: https://bosh.io/d/github.com/cloudfoundry-community/bosh-cloudstack-cpi-release?v=15
   sha1: ee408f6d4b0b94f28e5484b4290226560bb6e04f
 
@@ -23,22 +23,10 @@ resource_pools:
 - name: vms
   network: private
   stemcell:
-    url:  https://orange-candidate-cloudstack-xen-stemcell.s3.amazonaws.com/bosh-stemcell/cloudstack/bosh-stemcell-3262.3-cloudstack-xen-ubuntu-trusty-go_agent.tgz
-    sha1: cf6f6925d133d0b579d154694025c027bc64ef88
+    url:  https://orange-candidate-cloudstack-xen-stemcell.s3.amazonaws.com/bosh-stemcell/cloudstack/bosh-stemcell-3263.10-cloudstack-xen-ubuntu-trusty-go_agent.tgz
+    sha1: 16ca5adba391af2cd8d3ec2536e2d1604e34f2a6
 
 ...
-
-jobs:
-- name: bosh_api
-  templates:
-  - {name: nats, release: bosh}
-  - {name: postgres, release: bosh}
-  - {name: blobstore, release: bosh}
-  - {name: director, release: bosh}
-  - {name: health_monitor, release: bosh}
-  - {name: powerdns, release: bosh}
-  # - {name: registry, release: bosh}   #<-- registry. commented, cpi brings it own registry  
-  - {name: cloudstack_cpi, release: bosh-cloudstack-cpi} # <-- add the external CPI
 ```
 
 ## Reference
