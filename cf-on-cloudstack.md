@@ -30,6 +30,10 @@ resource_pools:
 ```
 - [bosh.yml template](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-release/blob/master/templates/bosh-init.yml)
 
+## Running
+- First run the bosh-cloudstack-cpi-core in standalone mode : you may need to create an application.yml
+- Second run the bosh-cpi-release by running bosh-init with bosh.yml : you may config the cpi server of the first step 
+
 ## Reference
 - [Bosh-cloudstack-cpi-release Git](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-release)
 - [Bosh-cloudstack-cpi-release Release](http://bosh.io/releases/github.com/cloudfoundry-community/bosh-cloudstack-cpi-release?all=1)
