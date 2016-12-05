@@ -1,6 +1,9 @@
 
 # 
 ## Python on Windows
+### Install
+- https://www.python.org/downloads/release/python-352/
+
 ### Modules
 - cli import
 ```
