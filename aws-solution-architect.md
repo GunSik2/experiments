@@ -6,7 +6,16 @@
   - Roles
   - Policy Documents
   ```
-  https://cgscloud.signin.aws.amazon.com/console 
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "NotAction": "iam:*",
+      "Resource": "*"
+    }
+  ]
+}
   ```
 - Properties
   - universal (all region)
