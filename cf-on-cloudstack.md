@@ -45,3 +45,4 @@ resource_pools:
 - [Bosh Release 260](http://bosh.io/releases/github.com/cloudfoundry/bosh?version=260)
 - [CloudStack Documentation](http://docs.cloudstack.apache.org/en/latest/)
 - [bosh-cloudstack-cpi-core](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-core)
+- [bosh-cloudstack-cpi-core-docker](https://hub.docker.com/r/orangecloudfoundry/bosh-cloudstack-cpi-core/~/dockerfile/)
