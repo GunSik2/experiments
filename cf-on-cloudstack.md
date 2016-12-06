@@ -46,3 +46,4 @@ resource_pools:
 - [CloudStack Documentation](http://docs.cloudstack.apache.org/en/latest/)
 - [bosh-cloudstack-cpi-core](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-core)
 - [bosh-cloudstack-cpi-core-docker](https://hub.docker.com/r/orangecloudfoundry/bosh-cloudstack-cpi-core/~/dockerfile/)
+- [CloudStack API](https://cloudstack.apache.org/api/apidocs-4.8/TOC_User.html)
