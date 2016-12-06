@@ -57,3 +57,9 @@
 - Import/Export
   - Import/Export Disk: Import to EBS/S3/Glacier, Export from S3
   - Import/Export Snowball: Import/Export to S3  
+
+## White Papers
+  - [AWS_Security_Whitepaper](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf)
+  - [AWS_Risk_and_Compliance_Whitepaper](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf)
+  - [Storage Options in the AWS Cloud_Whitepaper](https://d0.awsstatic.com/whitepapers/Storage/aws-storage-options.pdf)
+  - [AWS_Cloud_Best_Practices](http://media.amazonwebservices.com/AWS_Cloud_Best_Practices.pdf)  
