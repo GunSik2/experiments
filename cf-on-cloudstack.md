@@ -47,3 +47,4 @@ resource_pools:
 - [bosh-cloudstack-cpi-core](https://github.com/cloudfoundry-community/bosh-cloudstack-cpi-core)
 - [bosh-cloudstack-cpi-core-docker](https://hub.docker.com/r/orangecloudfoundry/bosh-cloudstack-cpi-core/~/dockerfile/)
 - [CloudStack API](https://cloudstack.apache.org/api/apidocs-4.8/TOC_User.html)
+- [How to Add BOSH Support to a Custom Cloud](https://blog.altoros.com/how-to-add-bosh-support-to-a-custom-cloud-part-2-external-bosh-cpis.html)
