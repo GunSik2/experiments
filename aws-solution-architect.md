@@ -1,5 +1,5 @@
 ## Resources
- 
+- [AWS Solutions Architect Associate Blueprint](https://d0.awsstatic.com/training-and-certification/docs-sa-assoc/AWS_certified_solutions_architect_associate_blueprint.pdf)
 - AWS Cloud Computing Whitepapers
   - http://aws.amazon.com/whitepapers 
   - [Overview of Amazon Web Services](https://d0.awsstatic.com/whitepapers/aws-overview.pdf)
