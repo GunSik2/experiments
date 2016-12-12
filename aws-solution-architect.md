@@ -7,6 +7,7 @@
   - [AWS Risk and Compliance](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf) 
   - [AWS Storage Services Overview](https://d0.awsstatic.com/whitepapers/Storage/AWS%20Storage%20Services%20Whitepaper-v9.pdf)
   - [Architecting for the Cloud: AWS Best Practices](https://d0.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf) 
+  - [AWS_Well-Architected_Framework](http://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
 - [AWS Cloud Computing Whitepapers Recommeneded in Korea Site](https://aws.amazon.com/ko/certification/certified-solutions-architect-associate/)
   - [AWS Security Best Practices](https://d0.awsstatic.com/whitepapers/aws-security-best-practices.pdf)
   - [Storage Options in the AWS Cloud](https://d0.awsstatic.com/whitepapers/Storage/aws-storage-options.pdf)
@@ -80,9 +81,3 @@ How AWS Pricing Works
   - Import/Export Disk: Import to EBS/S3/Glacier, Export from S3
   - Import/Export Snowball: Import/Export to S3  
 
-## White Papers
-  - [AWS_Security](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf)
-  - [AWS_Risk_and_Compliance](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf)
-  - [Storage Options in the AWS Cloud](https://d0.awsstatic.com/whitepapers/Storage/aws-storage-options.pdf)
-  - [AWS_Cloud_Best_Practices](http://media.amazonwebservices.com/AWS_Cloud_Best_Practices.pdf)  
-  - [AWS_Well-Architected_Framework](http://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
