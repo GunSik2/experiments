@@ -15,6 +15,9 @@
 # Database
 1. If you are using Amazon RDS Provisioned IOPS storage with MySQL and Oracle database engines what is the maximum size RDS volume you can have by default?
   - 6TB
+  
+![](https://cloud.githubusercontent.com/assets/11453229/21310376/6a343670-c625-11e6-9ca7-6b223e2a76f0.PNG)
+
 1. By default, the maximum provisioned IOPS capacity on an Oracle and MySQL RDS instance (using provisioned IOPS) is 30,000 IOPS.
 1. In RDS when using multiple availability zones, can you use the secondary database as an independent read node? (no)
 1. When replicating data from your primary RDS instance to your secondary RDS instance, what is the charge? No Charge, Its free
