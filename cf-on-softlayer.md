@@ -8,5 +8,8 @@
 - [softlayer cpi config](https://bosh.io/docs/softlayer-cpi.html)
 - [softlayer cpi spec](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/jobs/softlayer_cpi/spec)
 
+## Tips
+- You need to run bosh-init deploy command in root user
+
 ## Reference
 - [cf v238 release notes](https://bosh.io/releases/github.com/cloudfoundry/cf-release?version=238)
