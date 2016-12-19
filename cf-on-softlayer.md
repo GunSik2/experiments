@@ -8,6 +8,7 @@
 - [softlayer cpi config](https://bosh.io/docs/softlayer-cpi.html)
 - [softlayer cpi spec](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/jobs/softlayer_cpi/spec)
 - [softlayer cpi slack channel](https://cloudfoundry.slack.com/archives/bosh-softlayer-cpi)
+
 ## Tips
 - You need to run bosh-init deploy command in root user
 
