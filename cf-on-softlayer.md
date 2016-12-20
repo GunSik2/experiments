@@ -6,7 +6,7 @@
 - [softlayer deployment guide - bosh site](https://bosh.io/docs/init-softlayer.html)
 - [softlayer deployment guide - git site](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/docs/bosh-init-usage.md)
 - [softlayer cpi config](https://bosh.io/docs/softlayer-cpi.html)
-- [softlayer cpi config sample](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/b53babfca237a133ba866b5feb79bb8f82faa1c8/docs/sl-cloud-config.yml)
+- softlayer cpi config [sample1](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/b53babfca237a133ba866b5feb79bb8f82faa1c8/docs/sl-cloud-config.yml) [sample2](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/b53babfca237a133ba866b5feb79bb8f82faa1c8/docs/mimimal-softlayer.yml)
 - [softlayer cpi spec](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/jobs/softlayer_cpi/spec)
 - [softlayer cpi slack channel](https://cloudfoundry.slack.com/archives/bosh-softlayer-cpi)
 
