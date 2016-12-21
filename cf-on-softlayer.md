@@ -21,7 +21,7 @@
   - If you use secondary, you can move the ip to other vm positioned in other pods. (??)  
 - The outbound traffic of the VMs in private vlan is not supported.
   - Vyatta Network Gateway Appliance is requred in production
-  - Ubuntu 14.04 as a Gateway in PoC/Dev
+  - [Ubuntu 14.04 as a Gateway in PoC/Dev](http://askubuntu.com/questions/590920/ubuntu-14-04-as-a-gateway-router-and-a-firewall)
 
 ## Reference
 - [cf v238 release notes](https://bosh.io/releases/github.com/cloudfoundry/cf-release?version=238)
