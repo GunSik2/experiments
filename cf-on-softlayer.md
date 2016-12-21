@@ -22,6 +22,8 @@
 - The outbound traffic of the VMs in private vlan is not supported.
   - Vyatta Network Gateway Appliance is requred in production
   - [Ubuntu 14.04 as a Gateway in PoC/Dev](http://askubuntu.com/questions/590920/ubuntu-14-04-as-a-gateway-router-and-a-firewall): This option is not avialibe. The vlans are all different and it can't set other vlan as gateway.
+- VLAN 내 네트워크 및 리소스는 이중화 되는가?
+- VLAN 내 복수의 Subnet 구성할 것인가 / 복수 VLAN 내 단일 Subnet 으로 구성할 것인가
 
 ## Reference
 - [cf v238 release notes](https://bosh.io/releases/github.com/cloudfoundry/cf-release?version=238)
