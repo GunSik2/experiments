@@ -14,5 +14,12 @@
 ## Tips
 - You need to run bosh-init deploy command in root user
 
+## Consideration
+- which type of subnet will you use, additional_primary or secondary_on_vlan? 
+  - If you use primary, you use the static ip restricted to a vm. 
+    (Primary IP는 자원 생성 시 해당 자원에 할당되는 IP 입니다. Primary IP는 고정IP 이며 자원이 생성시 할당되어 자원이 삭제될 때까지 유지됩니다.)
+  - If you use secondary, you can move the ip to other vm positioned in other pods. (??)  
+    
+
 ## Reference
 - [cf v238 release notes](https://bosh.io/releases/github.com/cloudfoundry/cf-release?version=238)
