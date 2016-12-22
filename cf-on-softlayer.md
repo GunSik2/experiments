@@ -10,6 +10,8 @@
 - [softlayer cpi spec](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/jobs/softlayer_cpi/spec)
 - [softlayer cpi slack channel](https://cloudfoundry.slack.com/archives/bosh-softlayer-cpi)
 
+## CF
+- [softlayer cf yaml](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/docs/mimimal-softlayer.yml)
 
 ## Tips
 - You need to run bosh-init deploy command in root user
