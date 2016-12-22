@@ -12,6 +12,7 @@
 
 ## CF
 - [softlayer cf yaml](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/docs/mimimal-softlayer.yml)
+- [softlayer cf guide](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/docs/minimalistic_cf_deployment.md)
 
 ## Tips
 - You need to run bosh-init deploy command in root user
