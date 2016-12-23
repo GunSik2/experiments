@@ -18,6 +18,7 @@
 - Installation
 ```
 # pip install softlayer
+# pip install requests==2.5.3
 ```
 - Config
 ```
