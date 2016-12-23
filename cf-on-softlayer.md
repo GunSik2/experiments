@@ -14,6 +14,21 @@
 - [softlayer cf yaml](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/docs/mimimal-softlayer.yml)
 - [softlayer cf guide](https://github.com/cloudfoundry-incubator/bosh-softlayer-cpi-release/blob/master/docs/minimalistic_cf_deployment.md)
 
+## CLI
+- Installation
+```
+# pip install softlayer
+```
+- Config
+```
+# slcli setup
+```
+- Use: [cli guide](http://softlayer-python.readthedocs.io/en/latest/cli.html)
+```
+$ slcli vs
+$ slcli vs list
+```
+
 ## Tips
 - You need to run bosh-init deploy command in root user
 
@@ -27,6 +42,7 @@
   - [Ubuntu 14.04 as a Gateway in PoC/Dev](http://askubuntu.com/questions/590920/ubuntu-14-04-as-a-gateway-router-and-a-firewall): This option is not avialibe. The vlans are all different and it can't set other vlan as gateway.
 - VLAN 내 네트워크 및 리소스는 이중화 되는가?
 - VLAN 내 복수의 Subnet 구성할 것인가 / 복수 VLAN 내 단일 Subnet 으로 구성할 것인가
+
 
 ## Reference
 - [cf v238 release notes](https://bosh.io/releases/github.com/cloudfoundry/cf-release?version=238)
