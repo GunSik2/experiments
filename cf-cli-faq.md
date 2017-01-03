@@ -92,5 +92,10 @@ uaac member delete cloud_controller.admin cgshome@gmail.com
 uaac client update admin --authorities "EXISTING-PERMISSIONS password.write"
 
 
+###############
+# Api query
+###############
+
+curl "http://router_user:password@10.178.80.130:8080/routes" | jq "."
 
 ```
