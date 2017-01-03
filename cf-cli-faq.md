@@ -96,8 +96,12 @@ uaac client update admin --authorities "EXISTING-PERMISSIONS password.write"
 ```
 curl "http://router_user:password@10.178.80.130:8080/routes" | jq "."
 ```
-### Log
+### Etc
 ```
+# Log
 cf install-plugin "Firehose Plugin" -r CF-Community
 cf nozzle --debug
+
+# postgres
+/var/vcap/packages/postgres-9.4.6/bin/psql postgres://ccadmin:password@10.178.47.15:5524/ccdb
 ```
