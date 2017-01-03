@@ -90,12 +90,14 @@ uaac member add cloud_controller.admin cgshome@gmail.com
 uaac member delete cloud_controller.admin cgshome@gmail.com
 
 uaac client update admin --authorities "EXISTING-PERMISSIONS password.write"
+```
 
-
-###############
-# Api query
-###############
-
+### Api query
+```
 curl "http://router_user:password@10.178.80.130:8080/routes" | jq "."
-
+```
+### Log
+```
+cf install-plugin "Firehose Plugin" -r CF-Community
+cf nozzle --debug
 ```
