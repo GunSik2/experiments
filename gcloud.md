@@ -28,3 +28,6 @@ $ git config --list --system
 credential.helper=manager
 $ git config --system --unset credential.helper
 ```
+
+## Google App Engine
+- static web site: https://cloud.google.com/appengine/docs/python/getting-started/hosting-a-static-website
