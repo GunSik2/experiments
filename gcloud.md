@@ -30,4 +30,12 @@ $ git config --system --unset credential.helper
 ```
 
 ## Google App Engine
+- app deploy
+```
+gcloud app deploy
+```
+- browse app
+```
+gcloud app browse
+```
 - static web site: https://cloud.google.com/appengine/docs/python/getting-started/hosting-a-static-website
