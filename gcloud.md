@@ -43,11 +43,11 @@ $ gcloud projects list // project list
 ```
 - app create
 ```
-gcloud app create --project linkideareal --region asia-northeast1
+gcloud app create --project [PROJECT_ID] --region asia-northeast1
 ```
 - app deploy
 ```
-gcloud app deploy --project linkideareal
+gcloud app deploy --project [PROJECT_ID]
 ```
 - browse app
 ```
