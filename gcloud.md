@@ -47,7 +47,7 @@ gcloud app create --project linkideareal --region asia-northeast1
 ```
 - app deploy
 ```
-gcloud app deploy --project
+gcloud app deploy --project linkideareal
 ```
 - browse app
 ```
