@@ -30,9 +30,23 @@ $ git config --system --unset credential.helper
 ```
 
 ## Google App Engine
+- check region/projects
+```
+$ gcloud app regions list
+REGION           SUPPORTS STANDARD  SUPPORTS FLEXIBLE
+asia-northeast1  YES                YES
+europe-west      YES                NO
+us-central       YES                YES
+us-east1         YES                YES
+
+$ gcloud projects list // project list
+```
+- app create
+```
+gcloud app create --project linkideareal --region asia-northeast1
+```
 - app deploy
 ```
-gcloud projects list // project list
 gcloud app deploy --project <project_id>
 ```
 - browse app
