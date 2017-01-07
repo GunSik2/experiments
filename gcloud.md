@@ -32,7 +32,8 @@ $ git config --system --unset credential.helper
 ## Google App Engine
 - app deploy
 ```
-gcloud app deploy
+gcloud projects list // project list
+gcloud app deploy --project <project_id>
 ```
 - browse app
 ```
