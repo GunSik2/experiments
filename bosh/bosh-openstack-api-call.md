@@ -1,20 +1,9 @@
 Bosh OpenStack API Call List — Crossent 
-==================================================
-
-
-Table of Contents
-=================
-
-  * [All calls for API endpoint 'compute (nova)'](#all-calls-for-api-endpoint-compute-nova)
-  * [All calls for API endpoint 'identity (keystone)'](#all-calls-for-api-endpoint-identity-keystone)
-  * [All calls for API endpoint 'identityv3 (keystonev3)'](#all-calls-for-api-endpoint-identityv3-keystonev3)
-  * [All calls for API endpoint 'image (glance)'](#all-calls-for-api-endpoint-image-glance)
-  * [All calls for API endpoint 'network (neutron)'](#all-calls-for-api-endpoint-network-neutron)
-  * [All calls for API endpoint 'volumev2 (cinderv2)'](#all-calls-for-api-endpoint-volumev2-cinderv2)
+=======================================
+  
       
-      
-All calls for API endpoint 'compute (nova)'
--------------------------------------------
+compute (nova)
+--------------
 
 ```
 DELETE /v2/<tenant_id>/servers/<resource_id>
@@ -31,22 +20,22 @@ POST /v2/<tenant_id>/servers/<resource_id>/os-volume_attachments
 PUT /v2/<tenant_id>/servers/<resource_id>.json 
 ```
 
-All calls for API endpoint 'identity (keystone)'
--------------------------------------------
+identity (keystone)
+--------------------
 
 ```
 POST /v2.0/tokens
 ```
 
-All calls for API endpoint 'identityv3 (keystonev3)'
--------------------------------------------
+identityv3 (keystonev3)
+------------------------
 
 ```
 POST /v3/auth/tokens
 ```
 
-All calls for API endpoint 'image (glance)'
--------------------------------------------
+image (glance)
+--------------
 
 ```
 DELETE /v1/images/<resource_id>
@@ -60,8 +49,8 @@ POST /v2/images
 PUT /v2/images/<resource_id>/file
 ```
 
-All calls for API endpoint 'network (neutron)'
--------------------------------------------
+network (neutron)
+-----------------
 
 ```
 DELETE /v2.0/ports/<resource_id>
@@ -76,8 +65,8 @@ POST /v2.0/ports
 PUT /v2.0/floatingips/<resource_id> 
 ```
 
-All calls for API endpoint 'volumev2 (cinderv2)'
--------------------------------------------
+volumev2 (cinderv2)
+-------------------
 ```
 DELETE /v2/<tenant_id>/snapshots/<resource_id>
 DELETE /v2/<tenant_id>/volumes/<resource_id>
