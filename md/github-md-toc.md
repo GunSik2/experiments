@@ -1,4 +1,4 @@
-Creating table of content in md file
+Generating ToC(Table of Content) of md file
 ================
 
 
