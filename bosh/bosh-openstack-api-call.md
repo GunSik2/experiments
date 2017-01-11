@@ -1,6 +1,19 @@
 Bosh OpenStack API Call List — Crossent 
 ==================================================
 
+
+Table of Contents
+=================
+
+   * [Bosh OpenStack API Call List — Crossent ](#bosh-openstack-api-call-list--crossent-)
+      * [All calls for API endpoint 'compute (nova)'](#all-calls-for-api-endpoint-compute-nova)
+      * [All calls for API endpoint 'identity (keystone)'](#all-calls-for-api-endpoint-identity-keystone)
+      * [All calls for API endpoint 'identityv3 (keystonev3)'](#all-calls-for-api-endpoint-identityv3-keystonev3)
+      * [All calls for API endpoint 'image (glance)'](#all-calls-for-api-endpoint-image-glance)
+      * [All calls for API endpoint 'network (neutron)'](#all-calls-for-api-endpoint-network-neutron)
+      * [All calls for API endpoint 'volumev2 (cinderv2)'](#all-calls-for-api-endpoint-volumev2-cinderv2)
+      
+      
 All calls for API endpoint 'compute (nova)'
 -------------------------------------------
 
@@ -75,5 +88,3 @@ POST /v2/<tenant_id>/snapshots
 POST /v2/<tenant_id>/volumes
 ```
 
-### Source
-- https://github.com/cloudfoundry-incubator/bosh-openstack-cpi-release/edit/master/docs/openstack-api-calls.md
