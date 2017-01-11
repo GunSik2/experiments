@@ -65,3 +65,6 @@ POST /v2/<tenant_id>/snapshots body: {"snapshot":{"volume_id":"<resource_id>","n
 POST /v2/<tenant_id>/volumes body: {"volume":{"name":"<name>","description":"<description>","size":"<size>","availability_zone":"<availability_zone>"}}
 POST /v2/<tenant_id>/volumes body: {"volume":{"name":"<name>","description":"<description>","size":"<size>","volume_type":"SSD","availability_zone":"<availability_zone>"}}
 ```
+
+### Source
+- https://github.com/cloudfoundry-incubator/bosh-openstack-cpi-release/edit/master/docs/openstack-api-calls.md
