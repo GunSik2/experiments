@@ -1,5 +1,56 @@
+Using Convoy with Docker
+========================
 
-## Convoy plugin
+## Objective
+How to use convoy with docker to provide shared volume?
+
+
+## Docker with Convoy
+Any existing Convoy volume would be refered by it's name in Docker.
+
+### Register Convoy plugin to Docker
+```
+sudo mkdir -p /etc/docker/plugins/
+sudo bash -c 'echo "unix:///var/run/convoy/convoy.sock" > /etc/docker/plugins/convoy.spec'
+```
+### Managing Volume
+- Using convoy cli
+```
+sudo convoy create new_volume --driver ebs --size 10G --type io1 --iops 200
+sudo convoy delete -r new_volume
+```
+- Using docker volume
+```
+sudo docker volume create --name new_volume --volume-driver=convoy --opt driver=ebs --opt size=10G --opt type=io1 --opt iops=200
+sudo docker volume rm new_volume
+```
+
+### Create Container
+- Using default convoy driver opetion
+```
+sudo docker run -name db_container -v db_vol:/var/lib/mysql/ --volume-driver=convoy mariadb
+sudo convoy inspect db_vol
+```
+- Using custom driver option
+```
+sudo convoy create db_container --driver ebs --size 10G --type io1 --iops 200
+sudo docker run -name db_container -v db_vol:/var/lib/mysql/ --volume-driver=convoy mariadb
+```
+### Delete Container
+- By default, Docker doesn't delete volume associated with container when container got deleted. 
+```
+sudo docker rm db_container
+sudo convoy inspect db_vol  // would show
+```
+
+- In order to delete volume associate with Docker, you would need --volume/-v parameter of docker rm:
+```
+sudo docker rm -v db_container
+sudo convoy inspect db_vol  // would error out
+```
+ 
+ 
+## Convoy plugins
 - Introduction
   - Backends supported by Convoy currently
     - Device Mapper
@@ -11,8 +62,7 @@
 ![](http://img.scoop.it/qhnikgXThUYMjh8Ll8RuQzl72eJkfbmt4t8yenImKBVvK0kTmF0xjctABnaLJIm9)
 
 
-## Convoy Installation 
-- Install
+### Convoy Installation 
 ```
 wget https://github.com/rancher/convoy/releases/download/v0.5.0/convoy.tar.gz
 tar xvf convoy.tar.gz
@@ -24,7 +74,7 @@ sudo bash -c 'echo "unix:///var/run/convoy/convoy.sock" > /etc/docker/plugins/co
 ## Convoy with Device Mapper Driver
 
 - Create Convoy Device Mapper driver
-  - file-backed loopback device
+  - create file-backed loopback device
 ```
 truncate -s 10G data.vol
 truncate -s 1G metadata.vol
