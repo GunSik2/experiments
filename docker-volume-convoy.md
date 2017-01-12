@@ -10,6 +10,8 @@
 
 ![](http://img.scoop.it/qhnikgXThUYMjh8Ll8RuQzl72eJkfbmt4t8yenImKBVvK0kTmF0xjctABnaLJIm9)
 
+
+## Convoy Installation 
 - Install
 ```
 wget https://github.com/rancher/convoy/releases/download/v0.5.0/convoy.tar.gz
@@ -17,7 +19,9 @@ tar xvf convoy.tar.gz
 sudo cp convoy/convoy convoy/convoy-pdata_tools /usr/local/bin/
 sudo mkdir -p /etc/docker/plugins/
 sudo bash -c 'echo "unix:///var/run/convoy/convoy.sock" > /etc/docker/plugins/convoy.spec'
-```
+``
+
+## Convoy with Device Mapper Driver
 
 - Create Convoy Device Mapper driver
   - file-backed loopback device
@@ -55,7 +59,44 @@ vfs:///opt/convoy/?backup=backup-f8649df9c27b4750\u0026volume=vol1
 sudo convoy create res1 --backup <backup_url>
 sudo docker run -v res1:/res1 --volume-driver=convoy ubuntu ls -l /res1
 ```
+
 ## Convoy with GlusterFS
+Convoy can leveage GlusterFS to create volumes for Docker container. Snapshot and Backup are not supported at this stage.
+
+- Start Convoy plugin daemon 
+  - glusterfs.servers: Can be host name or IP address. Separate by "," without space
+  - glusterfs.defaultvolumepool: The default GlusterFS volume name which would be used to create container volumes
+```
+sudo convoy daemon --drivers devicemapper --driver-opts glusterfs.servers=10.1.1.2,10.1.1.3,10.1.1.4 --driver-opts glusterfs.defaultvolumepool=docker-volume
+```
+
+- Create
+  - Create a directory at mounted path of default GlusterFS volume, and use that directory to store volume.
+  - If the directory named volume_name already existed, it would be used instead of creating a new directory for volume.
+  - The default GlusterFS volume is mounted to /var/lib/convoy/glusterfs/mounts/my_vol
+```
+$ sudo convoy create vol1
+```
+
+- Delete
+  - Delete the directory where the volume stored by default.
+  - **--reference** would only delete the reference of volume in Convoy. It would preserve the volume directory for future use.
+```
+$ sudo convoy delete vol1
+$ sudo convoy delete vol1 --reference
+```
+
+- Inspect
+  -  Provides following informations at DriverInfo section: Name, Path, MountPoint, GlusterFSVolume, GlusterFSServers
+```
+$ sudo convoy inspect vol1
+```
+
+- Info
+  -  provides following informations at vfs section: Root, GlusterFSServers, DefaultVolumePool
+```
+$ sudo convoy info vol1
+```
 
 
 
