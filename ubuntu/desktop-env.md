@@ -12,4 +12,9 @@ sudo apt-get update && sudo apt-get install cinnamon
 sudo ppa-purge ppa:embrosyn/cinnamon
 ```
 
+## gnome-shell
+- Install
+```
+sudo apt install gnome-shell
+```
 
