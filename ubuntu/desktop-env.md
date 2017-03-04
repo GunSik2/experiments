@@ -18,3 +18,9 @@ sudo ppa-purge ppa:embrosyn/cinnamon
 sudo apt install gnome-shell
 ```
 
+## plasma
+- Install
+```
+sudo apt-add-repository ppa:kubuntu-ppa/backports
+sudo apt update && sudo apt full-upgrade -y
+```
