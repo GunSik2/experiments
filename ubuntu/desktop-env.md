@@ -1,6 +1,10 @@
 Ubuntu Desktop Environments
 ====
-
+## Lubuntu
+- Install
+```
+sudo apt-get install lubuntu-desktop  
+```
 ## Cinnamon
 - Install
 ```
