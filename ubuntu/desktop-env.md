@@ -23,4 +23,5 @@ sudo apt install gnome-shell
 ```
 sudo apt-add-repository ppa:kubuntu-ppa/backports
 sudo apt update && sudo apt full-upgrade -y
+sudo apt-get install kubuntu-desktop
 ```
