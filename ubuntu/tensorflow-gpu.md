@@ -1,4 +1,4 @@
-Tensorflow GPU on Ubuntu 16.04
+Tensorflow on Ubuntu 16.04
 ====
 
 ## Overview
@@ -6,6 +6,7 @@ Tensorflow GPU on Ubuntu 16.04
 - Method: virtualenv
 - ubuntu 16.04 
 - python version 3.5 (default on ubuntu 16.04) 
+- GPU : Nvidia graphic card with a [minimum compute capability](https://developer.nvidia.com/cuda-gpus) of 3.0.
 
 ## Tensorflow
 - Virtualenv : tensorflow CPU
@@ -25,5 +26,6 @@ source ~/tensorflow-gpu/bin/activate
 (tensorflow-gpu) pip3 install --upgrade tensorflow-gpu
 (tensorflow-gpu) deactivate
 ```
+
 ## Reference
 - https://www.tensorflow.org/install/install_linux#InstallingVirtualenv
