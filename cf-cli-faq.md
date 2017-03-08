@@ -105,3 +105,8 @@ cf nozzle --debug
 # postgres
 /var/vcap/packages/postgres-9.4.6/bin/psql postgres://ccadmin:password@10.178.47.15:5524/ccdb
 ```
+
+```
+cf org cgshome-org1 --guid
+cf curl /v2/organizations/cb4cfe6d-a814-4b48-9172-1e6f6a45b038
+```
